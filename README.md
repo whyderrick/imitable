@@ -1,4 +1,13 @@
-# Submish
+# Imitable
+Imitable is a complementary program to [Submittable](https://submittable.com).
+With Submittable, tracking a submission is easy, but tracking its constituent
+parts isn't. Imitable is designed to address that gap.
+
+This is a breakable toy built during my Apprenticeship at thoughtbot. The
+primary goal is to build around sound TDD principles in a way that allows
+functionality to expand beyond a basic Rails app. 
+
+Trello board for the project lives [here](https://trello.com/b/eV3O9qFw).
 
 ## Getting Started
 
