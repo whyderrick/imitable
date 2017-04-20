@@ -1,0 +1,17 @@
+<%= simple_form_for(@poem) do |form| %>
+  <%= render 'errors', object: @poem %>
+
+ u
+      
+  <%= form.input :title %>
+  <%= 
+    form.select :status,
+    ["Available", "Pending", "Accepted – Forthcoming", "Published"]
+  %>
+  <%= 
+    form.input :user_id, 
+    as: :hidden,
+    input_html: { value: current_user.id }
+  %>
+  <%= form.button :submit %>
+<% end %>

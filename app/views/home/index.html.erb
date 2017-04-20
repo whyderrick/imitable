@@ -1,0 +1,18 @@
+<div>
+  <h1>Inimitable</h1>
+  <div>
+    <h2>Your Poems</h2>
+    <% if @poems.present? %>
+      <dl>
+        <% @poems.each do |poem| %>
+          <dt><%= poem.title %></dt>
+          <dd><%= poem.status %></dd>
+          <dd><%= poem.updated_at %></dd>
+        <% end %>
+      </dl>
+    <% else %>
+      <p>Looks like you don't have any poems yet.</p>
+    <% end %>
+    <%= link_to t("poems.actions.new"), new_poem_path, class: "btn button" %>
+  </div>
+</div>
