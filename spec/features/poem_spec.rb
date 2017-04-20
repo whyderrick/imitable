@@ -8,17 +8,15 @@ feature "Poem management" do
       poem_status = "Pending"
 
       visit root_path(as: user)
-
       click_on t('poems.actions.new')
       fill_in :poem_title, with: poem_title
-      select "Pending", from: :poem_status
+      select poem_status, from: :poem_status
       submit_form
-      # As written, this test didn't give me a useful error when tried to save
-      # the record without including the user_id for the user the poem belongs
-      # to on the form. I'm wondering what a better way to write this test would
-      # be to realize that the page blew up here in the client.
 
-      expect(page).to have_flash_message(:notice, text: "Poem was created successfully")
+      expect(page).to have_flash_message(
+        :notice, 
+        text: "Poem was successfully created"
+      )
       expect(page).to have_content(poem_title)
       expect(page).to have_content(poem_status)
       expect(page).to have_content("Submitted to:")
@@ -29,13 +27,17 @@ feature "Poem management" do
       poem_title = nil
 
       visit root_path(as: user)
-
       click_on t('poems.actions.new')
       fill_in :poem_title, with: poem_title
       click_on("Create Poem")
 
-      expect(page).to have_flash_message(:error, text: "Poem was not created successfully")
-      expect(page).to have_flash_message(:error, text: "Poem title cannot be blank")
+      expect(page).to have_flash_message(
+        :alert,
+        text: "Poem could not be created"
+      )
+      within "div.alert-error" do
+        expect(page).to have_text("Title can't be blank")
+      end
       expect(page).not_to have_content("Submitted to:")
     end 
   end

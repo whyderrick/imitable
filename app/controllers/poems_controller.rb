@@ -4,9 +4,8 @@ class PoemsController < ApplicationController
   end
 
   def create
-    @poem = Poem.new(poem_params)
+    @poem = Poem.create(poem_params)
 
-    @poem.save
     respond_with @poem
   end
 

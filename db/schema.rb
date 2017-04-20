@@ -37,9 +37,6 @@ ActiveRecord::Schema.define(version: 20170414233058) do
     t.index ["user_id"], name: "index_poems_on_user_id", using: :btree
   end
 
-  create_table "poems_tables", force: :cascade do |t|
-  end
-
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false

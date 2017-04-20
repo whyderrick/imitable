@@ -13,6 +13,6 @@
     <% else %>
       <p>Looks like you don't have any poems yet.</p>
     <% end %>
-    <%= button_to t("poems.actions.new"), new_poem_path, method: :get %>
+    <%= link_to t("poems.actions.new"), new_poem_path, class: "btn button" %>
   </div>
 </div>

@@ -13,9 +13,10 @@
   <%= stylesheet_link_tag :application, media: "all" %>
   <%= csrf_meta_tags %>
 </head>
+
 <body class="<%= body_class %>">
-  <%= render "session_bar" -%>
-  <%= render "flashes" -%>
+  <%= render "session_bar" %>
+  <%= render "flashes" %>
   <%= yield %>
   <%= render "javascript" %>
   <%= render "css_overrides" %>
