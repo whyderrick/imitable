@@ -5,7 +5,7 @@ feature "Poem management" do
     scenario "and is shown that poem's page when successful" do
       user = create(:user)
       poem_title = "Mr. Mxyzptlk"
-      poem_status = "Pending"
+      poem_status = Poem::POEM_STATUSES.first 
 
       visit root_path(as: user)
       click_on t('poems.actions.new')
@@ -40,9 +40,5 @@ feature "Poem management" do
       end
       expect(page).not_to have_content("Submitted to:")
     end 
-  end
-
-  def submit_form
-    find('input[type="submit"][name="commit"]').click
   end
 end

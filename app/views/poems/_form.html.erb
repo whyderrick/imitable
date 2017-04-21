@@ -1,13 +1,8 @@
 <%= simple_form_for(@poem) do |form| %>
   <%= render 'errors', object: @poem %>
-
- u
       
   <%= form.input :title %>
-  <%= 
-    form.select :status,
-    ["Available", "Pending", "Accepted – Forthcoming", "Published"]
-  %>
+  <%= form.select :status, Poem::POEM_STATUSES %>
   <%= 
     form.input :user_id, 
     as: :hidden,
