@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :poems, only: [:new, :create, :show]
+  resources :submissions, only: [:new, :create, :show]
   # begin Clearance routes
   resources :passwords,
     controller: 'clearance/passwords',

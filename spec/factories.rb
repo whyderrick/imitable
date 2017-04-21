@@ -3,4 +3,10 @@ FactoryGirl.define do
     email "derrick@example.com"
     password "derrick"
   end
+
+  factory :poem do
+    user 
+    title "The Best Poem"
+    status "Pending"
+  end
 end

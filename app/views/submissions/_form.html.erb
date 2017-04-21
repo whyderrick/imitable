@@ -1,0 +1,12 @@
+<%= simple_form_for @submission  do |form| %>
+  <% if @submission.errors %>
+    <%= render "errors", object: @submission %>
+  <% end %>
+
+  <%= form.input :title %>
+  <%= form.input :submitted_to %>
+  <%= form.select :status, Submission::SUBMISSION_STATUSES %>
+  <%= form.association :poems, as: :check_boxes %>
+  <%= form.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+  <%= form.button :submit %>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170414233058) do
+ActiveRecord::Schema.define(version: 20170421215941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,22 @@ ActiveRecord::Schema.define(version: 20170414233058) do
     t.index ["user_id"], name: "index_poems_on_user_id", using: :btree
   end
 
+  create_table "submission_packets", force: :cascade do |t|
+    t.integer "poem_id",       null: false
+    t.integer "submission_id", null: false
+    t.string  "status"
+    t.index ["poem_id"], name: "index_submission_packets_on_poem_id", using: :btree
+    t.index ["submission_id"], name: "index_submission_packets_on_submission_id", using: :btree
+  end
+
+  create_table "submissions", force: :cascade do |t|
+    t.string  "title",        null: false
+    t.string  "status",       null: false
+    t.string  "submitted_to", null: false
+    t.integer "user_id",      null: false
+    t.index ["user_id"], name: "index_submissions_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
@@ -49,4 +65,7 @@ ActiveRecord::Schema.define(version: 20170414233058) do
   end
 
   add_foreign_key "poems", "users"
+  add_foreign_key "submission_packets", "poems"
+  add_foreign_key "submission_packets", "submissions"
+  add_foreign_key "submissions", "users"
 end
