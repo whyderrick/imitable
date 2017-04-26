@@ -11,7 +11,7 @@
         <% end %>
       </dl>
     <% else %>
-      <p>Looks like you don't have any poems yet.</p>
+      <p><%= t(".no_poems") %></p>
     <% end %>
     <%= link_to t("poems.actions.new"), new_poem_path, class: "btn button" %>
     <h2>Your Submissions</h2>
@@ -37,10 +37,9 @@
         </tbody>
       </table>
     <% end %>
-    <%= 
-      link_to t("submissions.actions.new"),
-      new_submission_path,
-      class: "btn button"
+    <%= link_to t("submissions.actions.new"),
+        new_submission_path,
+        class: "btn button"
     %>
   </div>
 </div>
