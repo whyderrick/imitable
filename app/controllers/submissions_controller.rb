@@ -4,24 +4,27 @@ class SubmissionsController < ApplicationController
   end
 
   def create
-    @submission = Submission.create(new_submission_params)
+    @submission = Submission.create(submission_params_with_user)
 
     respond_with @submission
   end
 
   def show
-    @submission = Submission.includes(:poems).find(params[:id]) ||
-      Submission.new
+    @submission = Submission.includes(:poems).find(params[:id])
   end
 
   private
 
   def submission_params
-    params.require(:submission).
-      permit(:title, :submitted_to, :status, poem_ids: [])
+    params.require(:submission).permit(
+      :title,
+      :submitted_to,
+      :status,
+      poem_ids: [],
+    )
   end
 
-  def new_submission_params
+  def submission_params_with_user
     submission_params.merge(user_id: current_user.id)
   end
 end

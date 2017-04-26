@@ -1,10 +1,10 @@
 <div>
-  <h2><%=@submission.title%></h2>
-  <h3><%=@submission.submitted_to%></h3>
+  <h2><%= @submission.title %></h2>
+  <h3><%= @submission.submitted_to %></h3>
   <h3>Poems in this submission</h3>
   <ul>
-    <% if @submission&.poems&.each do |poem| %>
-      <li><%=poem.title%></li>
+    <% if @submission.poems.each do |poem| %>
+        <li><%= poem.title %></li>
       <% end %>
     <% end %>
   </ul>

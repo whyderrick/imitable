@@ -5,7 +5,7 @@ FactoryGirl.define do
   end
 
   factory :poem do
-    user 
+    user
     title "The Best Poem"
     status "Ready"
   end

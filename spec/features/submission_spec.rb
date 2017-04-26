@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.feature "User creates a submission" do
   context "with an associated poem" do
@@ -10,7 +10,7 @@ RSpec.feature "User creates a submission" do
       submitted_to = "Scary Journal"
 
       visit root_path(as: user)
-      click_on t('submissions.actions.new')
+      click_on t("submissions.actions.new")
       fill_in :submission_title, with: submission_title
       fill_in :submission_submitted_to, with: submitted_to
       select submission_status, from: :submission_status
@@ -19,7 +19,7 @@ RSpec.feature "User creates a submission" do
 
       expect(page).to have_flash_message(
         :notice,
-        text: "Submission was successfully created."
+        text: "Submission was successfully created.",
       )
       expect(page).to have_text(submission_title)
       expect(page).to have_text(poem.title)
@@ -32,9 +32,9 @@ RSpec.feature "User creates a submission" do
       submission_title = "First Submission"
       submission_status = Submission::SUBMISSION_STATUSES.first
       submitted_to = "Scary Journal"
-      
+
       visit root_path(as: user)
-      click_on t('submissions.actions.new')
+      click_on t("submissions.actions.new")
       fill_in :submission_title, with: submission_title
       fill_in :submission_submitted_to, with: submitted_to
       select submission_status, from: :submission_status
@@ -42,7 +42,7 @@ RSpec.feature "User creates a submission" do
 
       expect(page).to have_flash_message(
         :notice,
-        text: "Submission was successfully created."
+        text: "Submission was successfully created.",
       )
       expect(page).to have_text(submission_title)
     end
@@ -63,7 +63,7 @@ RSpec.feature "User creates a submission" do
 
       expect(page).to have_flash_message(
         :alert,
-        text: "Submission could not be created."
+        text: "Submission could not be created.",
       )
       within "div.alert-error" do
         expect(page).to have_text("Title can't be blank")

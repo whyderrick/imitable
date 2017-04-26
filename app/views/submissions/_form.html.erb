@@ -1,11 +1,11 @@
-<%= simple_form_for @submission  do |form| %>
-  <% if @submission.errors %>
-    <%= render "errors", object: @submission %>
+<%= simple_form_for submission  do |form| %>
+  <% if submission.errors.present? %>
+    <%= render "errors", object: submission %>
   <% end %>
 
   <%= form.input :title %>
   <%= form.input :submitted_to %>
-  <%= form.select :status, Submission::SUBMISSION_STATUSES %>
+  <%= form.input :status, collection: Submission::SUBMISSION_STATUSES %>
   <%= form.association :poems, as: :check_boxes %>
   <%= form.button :submit %>
 <% end %>

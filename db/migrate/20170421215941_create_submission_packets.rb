@@ -3,7 +3,7 @@ class CreateSubmissionPackets < ActiveRecord::Migration[5.0]
     create_table :submission_packets do |t|
       t.references :poem, foreign_key: true, index: true, null: false
       t.references :submission, foreign_key: true, index: true, null: false
-      t.string :status
+      t.string :status, default: "Submitted", null: false
     end
   end
 end

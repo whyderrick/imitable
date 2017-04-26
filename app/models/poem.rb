@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 
 class Poem < ApplicationRecord
-  POEM_STATUSES = ["Rough Draft", "Ready", "Submitted", "Accepted", "Published"]
+  STATUSES = [
+    "Rough Draft",
+    "Ready",
+    "Submitted",
+    "Accepted",
+    "Published",
+  ].freeze
+
   belongs_to :user
   has_many :submission_packets, dependent: :destroy
   has_many :submissions, through: :submission_packets
