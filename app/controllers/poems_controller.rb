@@ -4,17 +4,17 @@ class PoemsController < ApplicationController
   end
 
   def create
-    @poem = Poem.create(poem_params)
-
+    @poem = current_user.poems.create(poem_params)
+    
     respond_with @poem
   end
 
   def show
-    @poem = Poem.find(params[:id])
+    @poem = Poem.find(params[:id]) || Poem.new
   end
 
   private
   def poem_params
-    params.require(:poem).permit(:title, :status, :user_id)
+    params.require(:poem).permit(:title, :status)
   end
 end

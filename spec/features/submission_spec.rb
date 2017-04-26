@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-RSpec.feature "Submissions" do
-  context "User creates a submission" do
+RSpec.feature "User creates a submission" do
+  context "with an associated poem" do
     scenario "and is shown the submission's show page when successful" do
       user = create(:user)
       poem = create(:poem, user: user)
       submission_title = "First Submission"
       submission_status = Submission::SUBMISSION_STATUSES.first
       submitted_to = "Scary Journal"
-      
+
       visit root_path(as: user)
       click_on t('submissions.actions.new')
       fill_in :submission_title, with: submission_title
@@ -24,8 +24,31 @@ RSpec.feature "Submissions" do
       expect(page).to have_text(submission_title)
       expect(page).to have_text(poem.title)
     end
+  end
 
-    scenario "and is shown a helpful error when providing incomplete data" do
+  context "without selecting a poem" do
+    scenario "and is shown the submission's show page" do
+      user = create(:user)
+      submission_title = "First Submission"
+      submission_status = Submission::SUBMISSION_STATUSES.first
+      submitted_to = "Scary Journal"
+      
+      visit root_path(as: user)
+      click_on t('submissions.actions.new')
+      fill_in :submission_title, with: submission_title
+      fill_in :submission_submitted_to, with: submitted_to
+      select submission_status, from: :submission_status
+      submit_form
+
+      expect(page).to have_flash_message(
+        :notice,
+        text: "Submission was successfully created."
+      )
+      expect(page).to have_text(submission_title)
+    end
+  end
+  context "with incomplete submission data" do
+    scenario "and is shown helpful errors" do
       user = create(:user)
       submission_title = ""
       submission_status = Submission::SUBMISSION_STATUSES.first
@@ -48,16 +71,4 @@ RSpec.feature "Submissions" do
       end
     end
   end
-
-  def go_to_submission_form
-    click_on t('submissions.actions.new')
-  end
-
-  def fill_out_submission_form
-    fill_in :submission_title, with: submission_title
-    fill_in :submission_submitted_to, with: submitted_to
-    fill_in :submission_status, with: submission_status
-    check poem.title
-  end
 end
-

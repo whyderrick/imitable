@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Submission < ApplicationRecord
   SUBMISSION_STATUSES = [
     "Received",
@@ -12,7 +14,7 @@ class Submission < ApplicationRecord
   has_many :submission_packets, dependent: :destroy
   has_many :poems, through: :submission_packets
 
-  validates_presence_of :title 
+  validates :title, presence: true
   validates :status, presence: true, inclusion: { in: SUBMISSION_STATUSES }
-  validates_presence_of :submitted_to
+  validates :submitted_to, presence: true
 end

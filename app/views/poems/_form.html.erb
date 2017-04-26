@@ -1,12 +1,8 @@
-<%= simple_form_for(@poem) do |form| %>
-  <%= render 'errors', object: @poem %>
-      
+<%= simple_form_for(poem) do |form| %>
+  <% if poem.errors.present? %>
+    <%= render "errors", object: poem %>
+  <% end %>
   <%= form.input :title %>
-  <%= form.select :status, Poem::POEM_STATUSES %>
-  <%= 
-    form.input :user_id, 
-    as: :hidden,
-    input_html: { value: current_user.id }
-  %>
+  <%= form.input :status, collection: Poem::POEM_STATUSES %>
   <%= form.button :submit %>
 <% end %>

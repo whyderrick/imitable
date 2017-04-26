@@ -7,6 +7,6 @@ FactoryGirl.define do
   factory :poem do
     user 
     title "The Best Poem"
-    status "Pending"
+    status "Ready"
   end
 end
