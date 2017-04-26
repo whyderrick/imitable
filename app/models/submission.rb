@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Submission < ApplicationRecord
-  SUBMISSION_STATUSES = [
+  STATUSES = [
     "Received",
     "In-progress",
     "Declined",
@@ -9,7 +9,8 @@ class Submission < ApplicationRecord
     "Completed",
     "Withdrawn",
     "Editable",
-  ]
+  ].freeze
+
   belongs_to :user
   has_many :submission_packets, dependent: :destroy
   has_many :poems, through: :submission_packets

@@ -5,7 +5,7 @@ feature "Poem management" do
     scenario "and is shown that poem's page when successful" do
       user = create(:user)
       poem_title = "Mr. Mxyzptlk"
-      poem_status = Poem::POEM_STATUSES.first 
+      poem_status = Poem::POEM_STATUSES.first
 
       visit root_path(as: user)
       click_on t('poems.actions.new')
@@ -21,7 +21,7 @@ feature "Poem management" do
       expect(page).to have_content(poem_status)
       expect(page).to have_content("Submitted to:")
     end
-    
+
     scenario "and sees a helpful error message when unsuccessful" do
       user = create(:user)
       poem_title = nil

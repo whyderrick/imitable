@@ -5,12 +5,12 @@ class PoemsController < ApplicationController
 
   def create
     @poem = current_user.poems.create(poem_params)
-    
+
     respond_with @poem
   end
 
   def show
-    @poem = Poem.find(params[:id]) || Poem.new
+    @poem = Poem.find(params[:id])
   end
 
   private
