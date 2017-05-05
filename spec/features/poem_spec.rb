@@ -5,7 +5,7 @@ feature "Poem management" do
     scenario "and is shown that poem's page when successful" do
       user = create(:user)
       poem_title = "Mr. Mxyzptlk"
-      poem_status = Poem::POEM_STATUSES.first
+      poem_status = Poem::STATUSES.first
 
       visit root_path(as: user)
       click_on t('poems.actions.new')

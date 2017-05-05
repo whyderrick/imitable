@@ -1,12 +1,12 @@
 require "rails_helper"
 
 RSpec.feature "User creates a submission" do
-  context "with an associated poem" do
+  context "with an associated poem that already exists" do
     scenario "and is shown the submission's show page when successful" do
       user = create(:user)
       poem = create(:poem, user: user)
       submission_title = "First Submission"
-      submission_status = Submission::SUBMISSION_STATUSES.first
+      submission_status = Submission::STATUSES.first
       submitted_to = "Scary Journal"
 
       visit root_path(as: user)
@@ -30,7 +30,7 @@ RSpec.feature "User creates a submission" do
     scenario "and is shown the submission's show page" do
       user = create(:user)
       submission_title = "First Submission"
-      submission_status = Submission::SUBMISSION_STATUSES.first
+      submission_status = Submission::STATUSES.first
       submitted_to = "Scary Journal"
 
       visit root_path(as: user)
@@ -47,11 +47,12 @@ RSpec.feature "User creates a submission" do
       expect(page).to have_text(submission_title)
     end
   end
+
   context "with incomplete submission data" do
     scenario "and is shown helpful errors" do
       user = create(:user)
       submission_title = ""
-      submission_status = Submission::SUBMISSION_STATUSES.first
+      submission_status = Submission::STATUSES.first
       submitted_to = nil
 
       visit root_path(as: user)

@@ -5,7 +5,7 @@
 
   <%= form.input :title %>
   <%= form.input :submitted_to %>
-  <%= form.input :status, collection: Submission::SUBMISSION_STATUSES %>
+  <%= form.input :status, collection: Submission::STATUSES %>
   <%= form.association :poems, as: :check_boxes %>
   <%= form.button :submit %>
 <% end %>

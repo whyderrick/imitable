@@ -3,6 +3,6 @@
     <%= render "errors", object: poem %>
   <% end %>
   <%= form.input :title %>
-  <%= form.input :status, collection: Poem::POEM_STATUSES %>
+  <%= form.input :status, collection: Poem::STATUSES %>
   <%= form.button :submit %>
 <% end %>
