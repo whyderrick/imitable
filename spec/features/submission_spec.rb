@@ -26,6 +26,35 @@ RSpec.feature "User creates a submission" do
     end
   end
 
+  context "and creates a new poem" do
+    scenario "and is shown the submisison's show with the new poem" do
+      user = create(:user)
+      existing_poem = create(:poem, user: user)
+      submission_title = "New Work"
+      submission_status = Submission::STATUSES.first
+      submitted_to = "Vaunted Journal"
+      new_poem_title = "Lyle 2.-"
+      poem_status = Poem::STATUSES.first
+
+      visit root_path(as: user)
+      click_on t("submissions.actions.new")
+      fill_in :submission_title, with: submission_title
+      fill_in :submission_submitted_to, with: submitted_to
+      select submission_status, from: :submission_status
+      check existing_poem.title
+      fill_in :poem_title, with: new_poem_title
+      select poem_status, from: :poem_status
+      submit.form
+
+      expect(page).to have_flash_message(
+        :notice,
+        text: t("flash.actions.create.notice"),
+      )
+      expect(page).to have_text(submission_title)
+      expect(page).to have_text(new_poem_title)
+    end
+  end
+
   context "without selecting a poem" do
     scenario "and is shown the submission's show page" do
       user = create(:user)
