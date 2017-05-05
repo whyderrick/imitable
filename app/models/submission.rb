@@ -16,6 +16,6 @@ class Submission < ApplicationRecord
   has_many :poems, through: :submission_packets
 
   validates :title, presence: true
-  validates :status, presence: true, inclusion: { in: SUBMISSION_STATUSES }
+  validates :status, presence: true, inclusion: { in: STATUSES }
   validates :submitted_to, presence: true
 end
