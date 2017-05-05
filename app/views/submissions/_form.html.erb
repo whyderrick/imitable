@@ -7,5 +7,9 @@
   <%= form.input :submitted_to %>
   <%= form.input :status, collection: Submission::STATUSES %>
   <%= form.association :poems, as: :check_boxes %>
+  <%= form.simple_fields_for :poem do |poem| %>
+    <%= poem.input :title, label: "New Poem Title", required: false %>
+    <%= poem.input :status, label: "New Poem Status", collection: Poem::STATUSES, required: false %>
+  <% end %>
   <%= form.button :submit %>
 <% end %>

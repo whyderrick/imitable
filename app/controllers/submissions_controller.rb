@@ -4,7 +4,8 @@ class SubmissionsController < ApplicationController
   end
 
   def create
-    @submission = Submission.create(submission_params_with_user)
+    @submission = current_user.submissions.create(submission_params)
+    @submission.persisted? && @submission.poems.create(extract_poem_params)
 
     respond_with @submission
   end
@@ -16,6 +17,7 @@ class SubmissionsController < ApplicationController
   private
 
   def submission_params
+    extract_poem_params
     params.require(:submission).permit(
       :title,
       :submitted_to,
@@ -24,7 +26,8 @@ class SubmissionsController < ApplicationController
     )
   end
 
-  def submission_params_with_user
-    submission_params.merge(user_id: current_user.id)
+  def extract_poem_params
+    @_poem_params ||= params[:submission].delete(:poem)
+    @_poem_params.permit(:title, :status).merge(user_id: current_user.id)
   end
 end

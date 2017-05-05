@@ -7,7 +7,7 @@ RSpec.describe Submission do
     it { is_expected.to validate_presence_of(:submitted_to) }
     it do
       is_expected.to validate_inclusion_of(:status).
-        in_array(Submission::SUBMISSION_STATUSES)
+        in_array(Submission::STATUSES)
     end
   end
 
