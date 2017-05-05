@@ -23,6 +23,7 @@ RSpec.feature "User creates a submission" do
       )
       expect(page).to have_text(submission_title)
       expect(page).to have_text(poem.title)
+      expect(user.submissions.first.poems.size).to eq(1)
     end
   end
 
@@ -42,16 +43,18 @@ RSpec.feature "User creates a submission" do
       fill_in :submission_submitted_to, with: submitted_to
       select submission_status, from: :submission_status
       check existing_poem.title
-      fill_in :poem_title, with: new_poem_title
-      select poem_status, from: :poem_status
-      submit.form
+      fill_in "New Poem Title", with: new_poem_title
+      select poem_status, from: "New Poem Status"
+      submit_form
+
+      expect(page).to have_text(submission_title)
+      expect(page).to have_text(new_poem_title)
 
       expect(page).to have_flash_message(
         :notice,
-        text: t("flash.actions.create.notice"),
+        text: "Submission was successfully created.",
       )
-      expect(page).to have_text(submission_title)
-      expect(page).to have_text(new_poem_title)
+      expect(user.submissions.first.poems.size).to eq 2
     end
   end
 
