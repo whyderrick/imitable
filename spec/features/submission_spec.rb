@@ -49,7 +49,6 @@ RSpec.feature "User creates a submission" do
 
       expect(page).to have_text(submission_title)
       expect(page).to have_text(new_poem_title)
-
       expect(page).to have_flash_message(
         :notice,
         text: "Submission was successfully created.",
