@@ -9,4 +9,11 @@ FactoryGirl.define do
     title "The Best Poem"
     status "Ready"
   end
+
+  factory :submission do
+    user
+    title "New Submission"
+    submitted_to "Magnificent Publication"
+    status Submission::STATUSES.first
+  end
 end
