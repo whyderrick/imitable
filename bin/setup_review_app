@@ -9,8 +9,8 @@ if [ -z "$1" ]; then
   exit 64
 fi
 
-PARENT_APP_NAME=submish-staging
-APP_NAME=submish-staging-pr-$1
+PARENT_APP_NAME=imitable-staging
+APP_NAME=imitable-staging-pr-$1
 URL=`heroku pg:backups public-url -a $PARENT_APP_NAME`
 
 heroku pg:backups restore $URL DATABASE_URL --confirm $APP_NAME --app $APP_NAME
