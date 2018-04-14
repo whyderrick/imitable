@@ -14,6 +14,7 @@ class PoemsController < ApplicationController
   end
 
   private
+
   def poem_params
     params.require(:poem).permit(:title, :status)
   end
