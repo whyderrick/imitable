@@ -15,4 +15,4 @@ class Poem < ApplicationRecord
 
   validates :title, presence: true
   validates :status, presence: true, inclusion: { in: STATUSES }
-end 
+end

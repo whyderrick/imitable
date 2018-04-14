@@ -10,7 +10,7 @@
   <%= form.simple_fields_for :submission_packets do |packet_form| %>
     <%= packet_form.simple_fields_for :poem do |poem_form| %>
       <%= poem_form.input :title, label: "New Poem Title", required: false %>
-      <%= poem_form.input :status, 
+      <%= poem_form.input :status,
         label: "New Poem Status",
         collection: Poem::STATUSES,
         required: false

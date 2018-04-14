@@ -1,4 +1,4 @@
-<%= simple_form_for(poem) do |form| %>
+<%= simple_form_for poem  do |form| %>
   <% if poem.errors.present? %>
     <%= render "errors", object: poem %>
   <% end %>
