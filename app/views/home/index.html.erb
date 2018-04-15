@@ -2,9 +2,9 @@
   <h1>Imitable</h1>
   <div>
     <h2>Your Poems</h2>
-    <% if @poems.present? %>
+    <% if poems.present? %>
       <dl>
-        <% @poems.each do |poem| %>
+        <% poems.each do |poem| %>
           <dt><%= poem.title %></dt>
           <dd><%= poem.status %></dd>
           <dd><%= poem.updated_at %></dd>
@@ -15,7 +15,7 @@
     <% end %>
     <%= link_to t("poems.actions.new"), new_poem_path, class: "btn button" %>
     <h2>Your Submissions</h2>
-    <% if @submissions.present? %>
+    <% if submissions.present? %>
       <table>
         <thead>
           <tr>
@@ -26,12 +26,12 @@
           </tr>
         </thead>
         <tbody>
-          <% @submissions.each do |submission| %>
+          <% submissions.each do |submission| %>
             <tr>
-              <td>submission.status</td>
-              <td>submission.title</td>
-              <td>submission.submission_date</td>
-              <td>submission.recipient</td>
+              <td><%= submission.status %></td>
+              <td><%= submission.title %></td>
+              <td><%= submission.created_at %></td>
+              <td><%= submission.submitted_to %></td>
             </tr>
           <% end %>
         </tbody>
