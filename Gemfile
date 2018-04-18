@@ -17,7 +17,6 @@ gem "recipient_interceptor"
 gem "responders"
 gem "sass-rails", "~> 5.0"
 gem "simple_form"
-# gem "skylight"
 gem "sprockets", ">= 3.0.0"
 gem "suspenders"
 gem "title"
@@ -46,7 +45,7 @@ group :development, :staging do
 end
 
 group :test do
-  gem "capybara-webkit"
+  gem "capybara-selenium"
   gem "database_cleaner"
   gem "formulaic"
   gem "launchy"
