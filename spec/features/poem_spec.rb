@@ -14,7 +14,7 @@ feature "Poem management" do
       submit_form
 
       expect(page).to have_flash_message(
-        :notice, 
+        :notice,
         text: "Poem was successfully created"
       )
       expect(page).to have_content(poem_title)
@@ -39,6 +39,6 @@ feature "Poem management" do
         expect(page).to have_text("Title can't be blank")
       end
       expect(page).not_to have_content("Submitted to:")
-    end 
+    end
   end
 end
