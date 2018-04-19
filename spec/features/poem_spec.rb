@@ -41,4 +41,24 @@ RSpec.feature "Poem management" do
       expect(page).not_to have_content("Submitted to:")
     end
   end
+
+  context "User views a poem's show" do
+    scenario "and sees the title and associated submissions" do
+      user = create(:user)
+      poem = create(:poem)
+
+      submissions = [
+        build(:submission, submitted_to: "Split This"),
+        build(:submission, submitted_to: "Rock DC"),
+      ]
+      poem.update(submissions: submissions)
+
+      visit root_path(as: user)
+      click_on(poem.title)
+
+      expect(page).to have_text(poem.title)
+      expect(page).to have_text(submissions.first.submitted_to)
+      expect(page).to have_text(submissions.second.submitted_to)
+    end
+  end
 end
