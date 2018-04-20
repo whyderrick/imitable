@@ -1,6 +1,11 @@
 <div>
-  <h2><%= @poem.title %></h2>
-  <h3><%= @poem.status %></h3>
+  <h2><%= poem.title %></h2>
+  <h3><%= poem.status %></h3>
 
   <h2>Submitted to:</h2>
+  <ul class="submission-list">
+    <% poem.submissions.each do |submission| %>
+      <li class="submission-item"><%= submission.submitted_to %></li>
+    <% end %>
+  </ul>
 </div>

@@ -10,7 +10,9 @@ class PoemsController < ApplicationController
   end
 
   def show
-    @poem = Poem.find(params[:id])
+    poem = Poem.includes(:submissions).find(params[:id])
+
+    render "show", locals: { poem: poem }
   end
 
   private

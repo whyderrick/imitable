@@ -5,7 +5,9 @@
     <% if poems.present? %>
       <dl>
         <% poems.each do |poem| %>
-          <dt><%= poem.title %></dt>
+          <dt>
+            <%= link_to(poem.title, poem_path(poem)) %>
+          </dt>
           <dd><%= poem.status %></dd>
           <dd><%= poem.updated_at %></dd>
         <% end %>

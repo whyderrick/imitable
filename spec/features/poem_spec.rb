@@ -45,7 +45,7 @@ RSpec.feature "Poem management" do
   context "User views a poem's show" do
     scenario "and sees the title and associated submissions" do
       user = create(:user)
-      poem = create(:poem)
+      poem = create(:poem, user: user)
 
       submissions = [
         build(:submission, submitted_to: "Split This"),
