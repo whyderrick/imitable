@@ -87,7 +87,7 @@ RSpec.feature "User creates a submission" do
       submitted_to = nil
 
       visit root_path(as: user)
-      click_on t('submissions.actions.new')
+      click_on t("submissions.actions.new")
       fill_in :submission_title, with: submission_title
       fill_in :submission_submitted_to, with: submitted_to
       select submission_status, from: :submission_status
