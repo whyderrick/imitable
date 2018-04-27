@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature "Poem management" do
+RSpec.feature "Poem management" do
   context "User creates a poem" do
     scenario "and is shown that poem's page when successful" do
       user = create(:user)
@@ -8,14 +8,14 @@ feature "Poem management" do
       poem_status = Poem::STATUSES.first
 
       visit root_path(as: user)
-      click_on t('poems.actions.new')
+      click_on t("poems.actions.new")
       fill_in :poem_title, with: poem_title
       select poem_status, from: :poem_status
       submit_form
 
       expect(page).to have_flash_message(
         :notice,
-        text: "Poem was successfully created"
+        text: "Poem was successfully created",
       )
       expect(page).to have_content(poem_title)
       expect(page).to have_content(poem_status)
@@ -27,13 +27,13 @@ feature "Poem management" do
       poem_title = nil
 
       visit root_path(as: user)
-      click_on t('poems.actions.new')
+      click_on t("poems.actions.new")
       fill_in :poem_title, with: poem_title
       click_on("Create Poem")
 
       expect(page).to have_flash_message(
         :alert,
-        text: "Poem could not be created"
+        text: "Poem could not be created",
       )
       within "div.alert-error" do
         expect(page).to have_text("Title can't be blank")
